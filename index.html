@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triunfo Barber | Barbearia na Chácara Santo Antônio, São Paulo</title>
+<meta name="description" content="Barbearia na Chácara Santo Antônio, Zona Sul de São Paulo. Corte, barba, coloração, corte infantil e planos mensais. Agende pelo WhatsApp.">
+<meta property="og:title" content="Triunfo Barber | Barbearia na Chácara Santo Antônio">
+<meta property="og:description" content="Corte, barba, coloração e planos mensais. Agende pelo WhatsApp.">
+<meta property="og:image" content="img/logo.png">
+<meta name="theme-color" content="#0c1f16">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #0c1f16;
+    --verde-2: #12301f;
+    --verde-3: #1a4230;
+    --ouro: #d4af5a;
+    --ouro-claro: #ecd598;
+    --texto: #f3efe4;
+    --texto-suave: #b9c2b6;
+    --whats: #1fa855;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Inter, system-ui, sans-serif;
+    background: var(--verde);
+    color: var(--texto);
+    line-height: 1.6;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { font-family: Cinzel, Georgia, serif; line-height: 1.2; }
+  .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* Topo */
+  .topo {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(12, 31, 22, .94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(212, 175, 90, .25);
+  }
+  .topo .container { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .marca { font-family: Cinzel, serif; font-weight: 700; color: var(--ouro); letter-spacing: .08em; font-size: 1.05rem; white-space: nowrap; }
+  .menu { display: none; gap: 28px; font-size: .92rem; color: var(--texto-suave); }
+  .menu a:hover { color: var(--ouro-claro); }
+  @media (min-width: 760px) { .menu { display: flex; } }
+
+  /* Botões */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 24px; border-radius: 999px;
+    font-weight: 600; font-size: 1rem;
+    transition: transform .15s, filter .15s;
+  }
+  .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn-whats { background: var(--whats); color: #fff; }
+  .btn-linha { border: 1.5px solid var(--ouro); color: var(--ouro-claro); }
+  .btn-ouro { background: var(--ouro); color: #1a1508; }
+  .agenda iframe { width: 100%; height: 640px; border: 0; border-radius: 14px; background: #fff; }
+  .agenda:empty { display: none; }
+  .btn-pequeno { padding: 9px 16px; font-size: .88rem; }
+  .btn svg { width: 20px; height: 20px; fill: currentColor; flex: none; }
+
+  /* Hero */
+  .hero {
+    position: relative; isolation: isolate; overflow: hidden;
+    text-align: center;
+    padding: 56px 0 64px;
+    min-height: calc(100svh - 60px);
+    display: grid; align-items: center;
+  }
+  /* Foto de fundo (com parallax), grade de hexágonos e degradê */
+  .hero-bg {
+    position: absolute; inset: -12% 0; z-index: -3;
+    background: url("img/foto4.png") center / cover no-repeat;
+    will-change: transform;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: -2;
+    background: linear-gradient(180deg, rgba(12,31,22,.8) 0%, rgba(12,31,22,.9) 60%, var(--verde) 100%);
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23ecd598' stroke-width='1'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23ecd598' stroke-width='1'/%3E%3C/svg%3E");
+    opacity: .16;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 0%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 0%, transparent 75%);
+    animation: hex-pulso 6s ease-in-out infinite;
+  }
+  @keyframes hex-pulso { 0%, 100% { opacity: .1; } 50% { opacity: .26; } }
+
+  /* Entrada do topo */
+  @keyframes sobe { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+  @keyframes medalhao-entra { from { opacity: 0; transform: scale(.6) rotate(-8deg); } to { opacity: 1; transform: none; } }
+  @keyframes brilho { 0%, 100% { box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 0 rgba(212,175,90,.0); } 50% { box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 36px 6px rgba(212,175,90,.45); } }
+  .anima .medalhao { animation: medalhao-entra .9s cubic-bezier(.2,.8,.2,1) both, brilho 4s ease-in-out 1s infinite; }
+  .anima h1      { animation: sobe .8s cubic-bezier(.2,.7,.2,1) .25s both; }
+  .anima p.sub   { animation: sobe .8s cubic-bezier(.2,.7,.2,1) .4s both; }
+  .anima .nota   { animation: sobe .8s cubic-bezier(.2,.7,.2,1) .55s both; }
+  .anima .acoes  { animation: sobe .8s cubic-bezier(.2,.7,.2,1) .7s both; }
+
+  /* Barra de progresso da rolagem */
+  .progresso {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 40;
+    background: linear-gradient(90deg, var(--ouro), var(--ouro-claro));
+    box-shadow: 0 0 12px rgba(236,213,152,.7);
+    transform: scaleX(0); transform-origin: left;
+  }
+
+  /* Elementos que se formam ao rolar */
+  .js .revelar {
+    opacity: 0; transform: translateY(36px);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1), clip-path .9s cubic-bezier(.2,.7,.2,1);
+    transition-delay: var(--atraso, 0ms);
+  }
+  .foto { overflow: hidden; border-radius: 12px; }
+  .foto img { transition: clip-path 1s cubic-bezier(.2,.7,.2,1) var(--atraso, 0ms), transform 1.3s cubic-bezier(.2,.7,.2,1) var(--atraso, 0ms); }
+  .js .foto.revelar:not(.visivel) img { clip-path: inset(0 0 100% 0); transform: scale(1.15); }
+  .js .revelar.visivel { opacity: 1; transform: none; clip-path: inset(0); }
+  .titulo h2::after {
+    content: ""; display: block; height: 2px; width: 64px; margin: 12px auto 0;
+    background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+    transition: width .9s ease .3s;
+  }
+  .js .titulo:not(.visivel) h2::after { width: 0; }
+
+  /* Brilho ao passar o dedo/mouse */
+  .servico, .avaliacao { transition: transform .25s, border-color .25s, box-shadow .25s; }
+  .servico:hover { transform: translateY(-4px); border-color: var(--ouro); box-shadow: 0 0 28px rgba(212,175,90,.22); }
+  .flutuante::before {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    border: 2px solid var(--whats); animation: onda 2.4s ease-out infinite;
+  }
+  @keyframes onda { from { transform: scale(1); opacity: .8; } to { transform: scale(1.7); opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero::before, .flutuante::before { animation: none; }
+  }  .medalhao {
+    width: 190px; height: 190px; margin: 0 auto 28px;
+    border-radius: 50%; overflow: hidden;
+    background: #fff;
+    border: 3px solid var(--ouro);
+    box-shadow: 0 12px 40px rgba(0,0,0,.5);
+  }
+  .medalhao img { width: 100%; height: 100%; object-fit: cover; transform: scale(.94); }
+  .hero h1 { font-size: clamp(1.8rem, 6vw, 3rem); color: var(--ouro-claro); margin-bottom: 12px; }
+  .hero p.sub { color: var(--texto); max-width: 520px; margin: 0 auto 20px; font-size: 1.05rem; }
+  .nota {
+    display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
+    font-size: .95rem; color: var(--texto-suave); margin-bottom: 28px;
+  }
+  .nota strong { color: var(--texto); }
+  .estrelas { color: var(--ouro); letter-spacing: 2px; }
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  /* Seções */
+  section { padding: 64px 0; }
+  .titulo { text-align: center; margin-bottom: 36px; }
+  .titulo h2 { font-size: clamp(1.5rem, 4.5vw, 2.1rem); color: var(--ouro); }
+  .titulo p { color: var(--texto-suave); margin-top: 8px; }
+  .faixa { background: var(--verde-2); }
+
+  /* Serviços */
+  .servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .servico {
+    background: var(--verde-2);
+    border: 1px solid rgba(212, 175, 90, .22);
+    border-radius: 14px; padding: 22px;
+  }
+  .servico h3 { font-size: 1.08rem; color: var(--ouro-claro); margin-bottom: 6px; }
+  .servico p { color: var(--texto-suave); font-size: .95rem; }
+  .obs { text-align: center; color: var(--texto-suave); margin-top: 28px; }
+  .obs a { color: var(--ouro-claro); text-decoration: underline; }
+
+  /* Galeria */
+  .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .galeria img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; }
+  @media (min-width: 760px) { .galeria { grid-template-columns: repeat(4, 1fr); } }
+
+  /* Avaliações */
+  .avaliacoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .avaliacao {
+    background: var(--verde); border-radius: 14px; padding: 24px;
+    border-left: 3px solid var(--ouro);
+  }
+  .avaliacao .estrelas { display: block; margin-bottom: 10px; }
+  .avaliacao blockquote { font-style: italic; }
+  .avaliacao cite { display: block; margin-top: 12px; font-style: normal; font-size: .85rem; color: var(--texto-suave); }
+
+  /* Localização */
+  .local { display: grid; gap: 28px; align-items: stretch; }
+  @media (min-width: 760px) { .local { grid-template-columns: 1fr 1.2fr; } }
+  .info dt { font-family: Cinzel, serif; color: var(--ouro); font-size: .9rem; letter-spacing: .06em; margin-top: 20px; }
+  .info dt:first-child { margin-top: 0; }
+  .info dd { font-size: 1.02rem; }
+  .info dd a:not(.btn) { text-decoration: underline; text-underline-offset: 3px; }
+  .info .acoes { justify-content: flex-start; margin-top: 28px; }
+  .mapa { border: 0; width: 100%; height: 100%; min-height: 320px; border-radius: 14px; }
+
+  /* Rodapé */
+  footer { border-top: 1px solid rgba(212, 175, 90, .25); padding: 28px 0 96px; text-align: center; color: var(--texto-suave); font-size: .88rem; }
+  footer .marca { display: block; margin-bottom: 6px; }
+
+  /* WhatsApp flutuante */
+  .flutuante {
+    position: fixed; right: 18px; bottom: 18px; z-index: 30;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--whats); color: #fff;
+    display: grid; place-items: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,.45);
+  }
+  .flutuante svg { width: 30px; height: 30px; fill: currentColor; }
+  /* Agenda aberta */
+  .marcador {
+    max-width: 720px; margin: 0 auto; padding: 22px;
+    background: var(--verde); border: 1px solid rgba(212,175,90,.3); border-radius: 18px;
+    box-shadow: 0 0 40px rgba(212,175,90,.08);
+  }
+  .marcador[hidden] { display: none; }
+  .demo-tag {
+    display: inline-block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ouro-claro); border: 1px dashed rgba(212,175,90,.6); border-radius: 999px; padding: 3px 10px;
+  }
+  .passo { font-family: Cinzel, serif; color: var(--ouro); font-size: .85rem; letter-spacing: .08em; margin: 20px 0 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .dias { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; }
+  .horas { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 8px; }
+  .opcao {
+    font: inherit; color: var(--texto); cursor: pointer;
+    background: var(--verde-2); border: 1px solid rgba(212,175,90,.25); border-radius: 10px;
+    padding: 10px 14px; transition: background .2s, border-color .2s, transform .15s, box-shadow .2s;
+  }
+  .opcao:hover { border-color: var(--ouro); transform: translateY(-1px); }
+  .opcao.sel { background: var(--ouro); border-color: var(--ouro); color: #1a1508; font-weight: 600; box-shadow: 0 0 18px rgba(212,175,90,.45); }
+  .chips .opcao { border-radius: 999px; }
+  .dia { flex: none; width: 66px; padding: 10px 0; text-align: center; line-height: 1.25; }
+  .dia small { display: block; font-size: .72rem; text-transform: uppercase; opacity: .8; }
+  .dia b { display: block; font-size: 1.25rem; }
+  .hora { padding: 10px 0; text-align: center; font-variant-numeric: tabular-nums; }
+  .vazio { color: var(--texto-suave); font-size: .95rem; }
+  .resumo { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(212,175,90,.2); text-align: center; }
+  .resumo p { margin-bottom: 14px; color: var(--texto-suave); }
+  .resumo p strong { color: var(--ouro-claro); }
+  .resumo .btn { border: 0; cursor: pointer; font-family: inherit; width: 100%; max-width: 360px; }
+  .resumo .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; filter: none; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ico-whats" viewBox="0 0 24 24">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24zM8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01z"/>
+  </symbol>
+</svg>
+
+<div class="progresso" id="progresso" aria-hidden="true"></div>
+
+<header class="topo">
+  <div class="container">
+    <a class="marca" href="#inicio">TRIUNFO BARBER</a>
+    <nav class="menu">
+      <a href="#servicos">Serviços</a>
+      <a href="#espaco">Espaço</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#local">Como chegar</a>
+    </nav>
+    <a class="btn btn-ouro btn-pequeno" href="#agendar">Agendar</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero" id="inicio">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="medalhao"><img src="img/logo.png" alt="Logo da Triunfo Barber"></div>
+      <h1>Barbearia na Chácara Santo Antônio</h1>
+      <p class="sub">Corte, barba e cuidado de verdade, em um ambiente feito para você sair no seu melhor.</p>
+      <div class="nota">
+        <span class="estrelas" aria-hidden="true">★★★★★</span>
+        <span><strong data-conta="5.0">5,0</strong> no Google · <span data-conta="47">47</span> avaliações</span>
+      </div>
+      <div class="acoes">
+        <a class="btn btn-ouro" href="#agendar">Agendar horário</a>
+        <a class="btn btn-whats" href="https://wa.me/5511934351277?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">
+          <svg><use href="#ico-whats"/></svg>WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section id="agendar" class="faixa">
+    <div class="container">
+      <div class="titulo">
+        <h2>Agende seu horário</h2>
+        <p id="agenda-texto">Escolha o serviço, o dia e o horário e confirme em poucos toques.</p>
+      </div>
+      <!-- Agenda aberta. Quando CONFIG.agendaUrl (no fim do arquivo) tiver o link do Google Agenda,
+           este bloco some e a agenda do Google aparece no lugar. -->
+      <div id="marcador" class="marcador">
+        <span class="demo-tag" id="demo-tag">Demonstração</span>
+        <div class="passo">1. SERVIÇO</div>
+        <div class="chips" id="m-servicos"></div>
+        <div class="passo">2. DIA</div>
+        <div class="dias" id="m-dias"></div>
+        <div class="passo">3. HORÁRIO</div>
+        <div class="horas" id="m-horas"></div>
+        <div class="resumo">
+          <p id="m-resumo">Escolha o serviço, o dia e o horário.</p>
+          <button class="btn btn-ouro" id="m-confirmar" disabled>Confirmar agendamento</button>
+        </div>
+      </div>
+      <div id="agenda" class="agenda"></div>
+      <div class="acoes" style="margin-top:24px">
+        <a class="btn btn-whats" href="https://wa.me/5511934351277?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">
+          <svg><use href="#ico-whats"/></svg>Prefiro agendar pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="container">
+      <div class="titulo">
+        <h2>Serviços</h2>
+        <p>Do corte do dia a dia ao cuidado completo.</p>
+      </div>
+      <div class="servicos">
+        <div class="servico"><h3>Corte de cabelo</h3><p>Do clássico ao degradê, no estilo que combina com você.</p></div>
+        <div class="servico"><h3>Barba</h3><p>Desenho, aparo e acabamento na navalha.</p></div>
+        <div class="servico"><h3>Coloração</h3><p>Cobertura de fios brancos, luzes e platinado.</p></div>
+        <div class="servico"><h3>Corte infantil</h3><p>Atendimento com paciência para os pequenos.</p></div>
+        <div class="servico"><h3>Depilação com cera</h3><p>Nariz, orelha e acabamento rápido e discreto.</p></div>
+        <div class="servico"><h3>Planos mensais</h3><p>Cabelo e barba sempre em dia por um valor fixo.</p></div>
+      </div>
+      <p class="obs">Valores e horários disponíveis: <a href="https://wa.me/5511934351277?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20os%20valores." target="_blank" rel="noopener">consulte pelo WhatsApp</a>.</p>
+    </div>
+  </section>
+
+  <section id="espaco" class="faixa">
+    <div class="container">
+      <div class="titulo">
+        <h2>Nosso espaço</h2>
+        <p>Ambiente climatizado, moderno e confortável.</p>
+      </div>
+      <div class="galeria">
+        <div class="foto"><img src="img/foto4.png" alt="Interior da Triunfo Barber com cadeiras e iluminação em hexágonos" loading="lazy"></div>
+        <div class="foto"><img src="img/foto1.png" alt="Cadeiras com capas da Triunfo Barber" loading="lazy"></div>
+        <div class="foto"><img src="img/foto2.png" alt="Bancada com produtos e espelhos" loading="lazy"></div>
+        <div class="foto"><img src="img/foto3.png" alt="Salão da Triunfo Barber visto da entrada" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="avaliacoes">
+    <div class="container">
+      <div class="titulo">
+        <h2>Quem vem, volta</h2>
+        <p>Nota 5,0 em 47 avaliações no Google.</p>
+      </div>
+      <div class="avaliacoes faixa-cartoes">
+        <div class="avaliacao faixa"><span class="estrelas" aria-hidden="true">★★★★★</span><blockquote>"Caique tem um atendimento sensacional, ótimo ambiente, cabelo e barba 10/10."</blockquote><cite>Avaliação no Google</cite></div>
+        <div class="avaliacao faixa"><span class="estrelas" aria-hidden="true">★★★★★</span><blockquote>"Profissionais de extrema qualidade e serviço excelente."</blockquote><cite>Avaliação no Google</cite></div>
+        <div class="avaliacao faixa"><span class="estrelas" aria-hidden="true">★★★★★</span><blockquote>"Caique é um profissional nota máxima."</blockquote><cite>Avaliação no Google</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="local" class="faixa">
+    <div class="container">
+      <div class="titulo">
+        <h2>Como chegar</h2>
+      </div>
+      <div class="local">
+        <dl class="info">
+          <dt>ENDEREÇO</dt>
+          <dd>R. Américo Brasiliense, 1413<br>Chácara Santo Antônio, São Paulo - SP<br>CEP 04715-003</dd>
+          <dt>HORÁRIO</dt>
+          <dd>Segunda a sábado, das 9h às 20h</dd>
+          <dt>TELEFONE / WHATSAPP</dt>
+          <dd><a href="tel:+5511934351277">(11) 93435-1277</a></dd>
+          <dt>INSTAGRAM</dt>
+          <dd><a href="https://www.instagram.com/triunfo.barbearia/" target="_blank" rel="noopener">@triunfo.barbearia</a></dd>
+          <dd class="acoes">
+            <a class="btn btn-whats" href="https://wa.me/5511934351277?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener"><svg><use href="#ico-whats"/></svg>Agendar</a>
+            <a class="btn btn-linha" href="https://www.google.com/maps/dir/?api=1&destination=Triunfo+Barber%2C+R.+Am%C3%A9rico+Brasiliense%2C+1413%2C+S%C3%A3o+Paulo" target="_blank" rel="noopener">Abrir rota</a>
+          </dd>
+        </dl>
+        <iframe class="mapa" title="Mapa da Triunfo Barber" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Triunfo+Barber%2C+R.+Am%C3%A9rico+Brasiliense%2C+1413%2C+S%C3%A3o+Paulo&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span class="marca">TRIUNFO BARBER</span>
+    R. Américo Brasiliense, 1413 · Chácara Santo Antônio · São Paulo - SP
+  </div>
+</footer>
+
+<a class="flutuante" href="https://wa.me/5511934351277?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp">
+  <svg><use href="#ico-whats"/></svg>
+</a>
+
+<script>
+  // ================= CONFIGURAÇÃO =================
+  // Tudo o que muda de um cliente para outro fica aqui.
+  const CONFIG = {
+    whatsapp: "5511934351277",        // número com 55 + DDD
+    // Link da página de agendamento do Google Agenda da barbearia
+    // (Google Agenda > Criar > Agendamento de horários > Compartilhar > link).
+    // Enquanto estiver vazio, o site usa a agenda própria abaixo e confirma pelo WhatsApp.
+    agendaUrl: "",
+    modoDemonstracao: true,           // mostra a etiqueta "Demonstração"; trocar para false ao publicar
+    abre: 9, fecha: 20,               // horário de funcionamento
+    intervaloMin: 30,                 // duração de cada horário
+    diasAbertos: [1, 2, 3, 4, 5, 6],  // 0 = domingo ... 6 = sábado
+    diasNaAgenda: 10,                 // quantos dias à frente aparecem
+    servicos: ["Corte", "Barba", "Corte + Barba", "Coloração", "Corte infantil"],
+  };
+
+  const marcador = document.getElementById("marcador");
+  if (CONFIG.agendaUrl) {
+    marcador.hidden = true;
+    const f = document.createElement("iframe");
+    f.src = CONFIG.agendaUrl;
+    f.title = "Agenda on-line da Triunfo Barber";
+    f.loading = "lazy";
+    document.getElementById("agenda").appendChild(f);
+  } else {
+    document.getElementById("demo-tag").hidden = !CONFIG.modoDemonstracao;
+    const escolha = { servico: null, dia: null, hora: null };
+    const elServicos = document.getElementById("m-servicos");
+    const elDias = document.getElementById("m-dias");
+    const elHoras = document.getElementById("m-horas");
+    const elResumo = document.getElementById("m-resumo");
+    const elConfirmar = document.getElementById("m-confirmar");
+    const semana = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
+    const semanaLonga = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+    const doisDig = (n) => String(n).padStart(2, "0");
+    const dataCurta = (d) => doisDig(d.getDate()) + "/" + doisDig(d.getMonth() + 1);
+
+    const botao = (classe, html, aoClicar) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "opcao " + classe; b.innerHTML = html;
+      b.addEventListener("click", () => aoClicar(b));
+      return b;
+    };
+    const marcar = (lista, b) => { lista.querySelectorAll(".sel").forEach((x) => x.classList.remove("sel")); b.classList.add("sel"); };
+
+    const atualizar = () => {
+      const pronto = escolha.servico && escolha.dia && escolha.hora;
+      elConfirmar.disabled = !pronto;
+      elResumo.innerHTML = pronto
+        ? "<strong>" + escolha.servico + "</strong> · " + semanaLonga[escolha.dia.getDay()] + ", " + dataCurta(escolha.dia) + " às <strong>" + escolha.hora + "</strong>"
+        : "Escolha o serviço, o dia e o horário.";
+    };
+
+    const montarHoras = () => {
+      elHoras.innerHTML = ""; escolha.hora = null;
+      const agora = new Date();
+      const hoje = escolha.dia.toDateString() === agora.toDateString();
+      for (let m = CONFIG.abre * 60; m < CONFIG.fecha * 60; m += CONFIG.intervaloMin) {
+        if (hoje && m <= agora.getHours() * 60 + agora.getMinutes() + 30) continue;
+        const texto = doisDig(Math.floor(m / 60)) + ":" + doisDig(m % 60);
+        elHoras.appendChild(botao("hora", texto, (b) => { escolha.hora = texto; marcar(elHoras, b); atualizar(); }));
+      }
+      if (!elHoras.children.length) elHoras.innerHTML = '<span class="vazio">Sem horários para hoje. Escolha outro dia.</span>';
+      atualizar();
+    };
+
+    CONFIG.servicos.forEach((s) => elServicos.appendChild(botao("", s, (b) => { escolha.servico = s; marcar(elServicos, b); atualizar(); })));
+
+    let primeiro = null;
+    for (let i = 0, postos = 0; postos < CONFIG.diasNaAgenda && i < 60; i++) {
+      const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() + i);
+      if (!CONFIG.diasAbertos.includes(d.getDay())) continue;
+      postos++;
+      const b = botao("dia", "<small>" + (i === 0 ? "hoje" : semana[d.getDay()]) + "</small><b>" + d.getDate() + "</b><small>" + d.toLocaleDateString("pt-BR", { month: "short" }).replace(".", "") + "</small>",
+        (el) => { escolha.dia = d; marcar(elDias, el); montarHoras(); });
+      elDias.appendChild(b);
+      if (!primeiro) primeiro = b;
+    }
+    if (primeiro) primeiro.click();
+
+    elConfirmar.addEventListener("click", () => {
+      const msg = "Olá! Vim pelo site e quero agendar:\n" +
+        "• Serviço: " + escolha.servico + "\n" +
+        "• Dia: " + semanaLonga[escolha.dia.getDay()] + ", " + dataCurta(escolha.dia) + "\n" +
+        "• Horário: " + escolha.hora;
+      window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+    });
+  }
+
+  // ---------- Animações ----------
+  const semMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!semMovimento && "IntersectionObserver" in window) requestAnimationFrame(() => {
+    // Só liga as animações quando o navegador está de fato desenhando a página;
+    // se algo falhar, o conteúdo continua visível.
+    document.documentElement.classList.add("js");
+    document.querySelector(".hero").classList.add("anima");
+
+    // Cada bloco aparece quando entra na tela, um depois do outro
+    const alvos = document.querySelectorAll(".titulo, .marcador, .servico, .foto, .avaliacao, .info, .mapa, #agendar .acoes, .obs");
+    const obs = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        el.classList.add("visivel");
+        obs.unobserve(el);
+        setTimeout(() => { el.classList.remove("revelar"); el.style.removeProperty("--atraso"); }, 1800);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    alvos.forEach((el) => {
+      const posicao = [...el.parentElement.children].indexOf(el);
+      el.style.setProperty("--atraso", (posicao % 6) * 110 + "ms");
+      el.classList.add("revelar");
+      obs.observe(el);
+    });
+
+    // Números da nota contando
+    document.querySelectorAll("[data-conta]").forEach((el) => {
+      const fim = parseFloat(el.dataset.conta);
+      const casas = el.dataset.conta.includes(".") ? 1 : 0;
+      const formata = (v) => v.toFixed(casas).replace(".", ",");
+      const inicio = performance.now() + 700;
+      const passo = (agora) => {
+        const p = Math.min(Math.max((agora - inicio) / 1300, 0), 1);
+        el.textContent = formata(fim * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(passo);
+      };
+      requestAnimationFrame(passo);
+      setTimeout(() => { el.textContent = formata(fim); }, 2600);
+    });
+
+    // Barra de progresso e fundo que se move mais devagar que a página
+    const barra = document.getElementById("progresso");
+    const fundo = document.querySelector(".hero-bg");
+    let pendente = false;
+    const aoRolar = () => {
+      pendente = false;
+      const y = scrollY;
+      const total = document.documentElement.scrollHeight - innerHeight;
+      barra.style.transform = "scaleX(" + (total > 0 ? y / total : 0) + ")";
+      if (y < innerHeight) fundo.style.transform = "translateY(" + y * 0.25 + "px) scale(" + (1 + y / innerHeight * 0.08) + ")";
+    };
+    addEventListener("scroll", () => { if (!pendente) { pendente = true; requestAnimationFrame(aoRolar); } }, { passive: true });
+    aoRolar();
+  });
+</script>
+</body>
+</html>
